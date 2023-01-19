@@ -1,0 +1,32 @@
+import java.util.*;
+import java.io.*;
+public class Diamond {
+    public static void main(String[] args) throws IOException {
+        Scanner r = new Scanner(new File("diamond.in"));
+//        Scanner r = new Scanner(System.in);
+        PrintWriter pw = new PrintWriter("diamond.out");
+
+        int N = r.nextInt();
+        int K = r.nextInt();
+
+        int[] sizes = new int[N];
+        for (int i = 0; i < N; i++) {
+            sizes[i] = r.nextInt();
+        }
+        Arrays.sort(sizes);
+        int max = 0;
+        for (int i = 0; i < N; i++) {
+            int temp = 0;
+            for (int j = i; j < N; j++) {
+                if (Math.abs(sizes[j] - sizes[i]) <= K) {
+                        temp++;
+                }
+            }
+            max = Math.max(max, temp);
+        }
+//        System.out.println(max);
+        pw.println(max);
+        pw.close();
+    }
+
+}
