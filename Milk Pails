@@ -1,0 +1,33 @@
+import java.util.*;
+import java.io.*;
+
+public class Pails {
+    public static void main(String[] args) throws IOException {
+        Scanner r = new Scanner(new File("pails.in"));
+//        Scanner r = new Scanner(System.in);
+        PrintWriter pw = new PrintWriter("pails.out");
+
+        int X = r.nextInt();
+        int Y = r.nextInt();
+        int M = r.nextInt();
+
+        int multiX = (M - (M % X))/X;
+        int multiY = (M - (M % Y))/Y;
+        int minCut = M;
+//        System.out.println(multiX);
+//        System.out.println(multiY);
+
+        for (int i = 0; i <= multiX; i++) {
+            for (int j = 0; j <= multiY; j++) {
+                int temp = M - (X * i + Y * j);
+                if (temp >= 0 && temp < minCut) {
+                    minCut = temp;
+                }
+            }
+        }
+//        System.out.println(minCut);
+//        System.out.println(M - minCut);
+        pw.println(M - minCut);
+        pw.close();
+    }
+}
