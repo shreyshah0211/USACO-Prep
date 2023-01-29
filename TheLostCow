@@ -1,0 +1,52 @@
+import java.util.*;
+import java.io.*;
+
+public class TheLostCow {
+    public static void main(String[] args) throws IOException {
+        Scanner r = new Scanner(new File("lostcow.in"));
+//        Scanner r = new Scanner(System.in);
+        PrintWriter pw = new PrintWriter("lostcow.out");
+
+        int x = r.nextInt();
+        int y = r.nextInt();
+
+        int steps = 0;
+        int currentX = x;
+        boolean posneg = true;
+
+        for (int i = 1; x != y; i = i*2) {
+            if (posneg == true) {
+                steps += Math.abs(x + i - currentX);
+                currentX = x + i;
+                if (y > x) {
+                    if (currentX > y) {
+                        steps -= Math.abs(currentX - y);
+                        break;
+                    }
+                }
+                if (currentX == y) {
+                    break;
+                }
+                posneg = false;
+            }
+            else {
+                steps += Math.abs(x - i - currentX);
+                currentX = x - i;
+                if (x > y) {
+                    if (currentX < y) {
+                        steps -= Math.abs(y - currentX);
+                        break;
+                    }
+                }
+                if (currentX == y) {
+                    break;
+                }
+
+                posneg = true;
+            }
+        }
+
+        pw.println(steps);
+        pw.close();
+    }
+}
