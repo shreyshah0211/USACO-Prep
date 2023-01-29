@@ -1,0 +1,34 @@
+import java.util.*;
+import java.io.*;
+public class Promotion {
+    public static void main(String[] args) throws IOException {
+        Scanner r = new Scanner(new File("promote.in"));
+        PrintWriter pw = new PrintWriter("promote.out");
+        int b1 = r.nextInt();
+        int b2 = r.nextInt();
+        int s1 = r.nextInt();
+        int s2 = r.nextInt();
+        int g1 = r.nextInt();
+        int g2 = r.nextInt();
+        int p1 = r.nextInt();
+        int p2 = r.nextInt();
+
+
+        int silver = (s2 - s1);
+        int gold = (g2 - g1);
+        int plat = (p2 - p1);
+
+        int BtoS = silver + gold + plat;
+        int StoG = gold + plat;
+        int GtoP = plat;
+
+
+        pw.println(BtoS);
+        pw.println(StoG);
+        pw.println(GtoP);
+        pw.close();
+
+
+
+    }
+}
