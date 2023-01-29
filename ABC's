@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+
+public class ABC {
+    public static void main(String[] args) throws IOException {
+        Scanner r = new Scanner(System.in);
+        int a = r.nextInt();
+        int b = r.nextInt();
+        int c = r.nextInt();
+        int d = r.nextInt();
+        int e = r.nextInt();
+        int f = r.nextInt();
+        int g = r.nextInt();
+
+        int[] num = {a, b, c, d, e, f, g};
+        Arrays.sort(num);
+
+        int[] result = new int[3];
+        result[0] = num[0];
+        result[1] = num[1];
+        result[2] = num[6] - num[0] - num[1];
+
+        Arrays.sort(result);
+
+        System.out.println(result[0] + " " + result[1] + " " + result[2]);
+    }
+}
