@@ -1,0 +1,51 @@
+import java.util.*;
+import java.io.*;
+
+public class Shuffle {
+    public static void main(String[] args) throws IOException {
+        Scanner r = new Scanner(new File("shuffle.in"));
+        PrintWriter pw = new PrintWriter("shuffle.out");
+//        Scanner r = new Scanner(System.in);
+
+        int N = r.nextInt();
+        int[] shuffle = new int[N];
+        for (int i = 0; i < shuffle.length; i++) {
+            shuffle[i] = r.nextInt();
+        }
+
+        int[] endResult = new int[N];
+        for (int i = 0; i < endResult.length; i++) {
+            endResult[i] = r.nextInt();
+        }
+
+        int[] shuffle1 = new int[N];
+        int[] shuffle2 = new int[N];
+        int[] shuffle3 = new int[N];
+
+
+        for (int i = N - 1; i >= 0; i--) {
+           int sp2 = shuffle[i] - 1;
+           int sp1 = i;
+
+           shuffle1[sp1] = endResult[sp2];
+        }
+        for (int i = N - 1; i >= 0; i--) {
+            int sp2 = shuffle[i] - 1;
+            int sp1 = i;
+
+            shuffle2[sp1] = shuffle1[sp2];
+        }
+        for (int i = N - 1; i >= 0; i--) {
+            int sp2 = shuffle[i] - 1;
+            int sp1 = i;
+
+            shuffle3[sp1] = shuffle2[sp2];
+        }
+
+
+        for (int i = 0; i < N; i++) {
+            pw.println(shuffle3[i]);
+        }
+        pw.close();
+    }
+}
