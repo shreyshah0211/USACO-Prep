@@ -1,0 +1,41 @@
+import java.util.*;
+import java.io.*;
+import java.awt.*;
+public class Pasture2 {
+    public static void main(String[] args) throws IOException {
+        Scanner r = new Scanner(new File("square.in"));
+        PrintWriter pw = new PrintWriter("square.out");
+//        Scanner r = new Scanner(System.in);
+
+        //sqaure 1
+        int sx1 = r.nextInt();
+        int sy1 = r.nextInt();
+        int sx2 = r.nextInt();
+        int sy2 = r.nextInt();
+
+        Rectangle sq1 = new Rectangle(sx1, -sy2, Math.abs(sx2 - sx1), Math.abs(sy2 - sy1));
+
+
+        //square 2
+        int s2x1 = r.nextInt();
+        int s2y1 = r.nextInt();
+        int s2x2 = r.nextInt();
+        int s2y2 = r.nextInt();
+
+        Rectangle sq2 = new Rectangle(s2x1, -s2y2, Math.abs(s2x2 - s2x1), Math.abs(s2y2 - s2y1));
+
+        Rectangle combine = sq1.union(sq2);
+        int height = (int)(combine.getHeight());
+        int width = (int)(combine.getWidth());
+
+        int result = 0;
+        if (height > width) {
+            result = height;
+        }
+        else {
+            result = width;
+        }
+        pw.println(result*result);
+        pw.close();
+    }
+}
