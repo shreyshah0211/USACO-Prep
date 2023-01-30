@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+public class BucketList {
+    public static void main(String[] args) throws IOException {
+        Scanner r = new Scanner(new File("blist.in"));
+        PrintWriter pw = new PrintWriter("blist.out");
+
+        int cows = r.nextInt();
+        int[] startTimes = new int[cows];
+        int[] endTimes = new int[cows];
+        int[] buckets = new int[cows];
+        for (int i = 0; i < cows; i++) {
+            startTimes[i] = r.nextInt();
+            endTimes[i] = r.nextInt();
+            buckets[i] = r.nextInt();
+        }
+
+        int[] timeBuckets = new int[1000];
+        for (int i = 0; i < cows; i++) {
+            for (int j = startTimes[i] - 1; j < endTimes[i]; j++) {
+                timeBuckets[j] += buckets[i];
+            }
+        }
+        int maxBuckets = 0;
+        for (int i = 0; i < timeBuckets.length; i++) {
+            if (timeBuckets[i] > maxBuckets) {
+                maxBuckets = timeBuckets[i];
+            }
+        }
+        pw.println(maxBuckets);
+        pw.close(); 
+    }
+}
