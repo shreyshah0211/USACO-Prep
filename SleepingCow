@@ -1,0 +1,42 @@
+import java.util.*;
+import java.io.*;
+
+public class SleepingCow {
+    public static void main(String[] args) throws IOException {
+//        Scanner r = new Scanner(System.in);
+        Scanner r = new Scanner(new File("herding.in"));
+        PrintWriter pw = new PrintWriter("herding.out");
+
+        int[] locations = new int[3];
+
+        locations[0] = r.nextInt();
+        locations[1] = r.nextInt();
+        locations[2] = r.nextInt();
+
+        Arrays.sort(locations);
+
+        int dif1 = locations[1] - locations[0];
+        int dif2 = locations[2] - locations[1];
+        int max = 0;
+        int min = 0;
+        if (locations[0] + 2 == locations[1] ||  locations[1] + 2 == locations[2]) {
+            min = 1;
+        }
+        else if (locations[0] + 1 == locations[1] && locations[1] + 1 == locations[2]) {
+            min = 0;
+        }
+        else {
+            min = 2;
+        }
+
+        if (dif2 > dif1) {
+            max = dif2 - 1;
+        }
+        else {
+            max = dif1 - 1;
+        }
+        pw.println(min);
+        pw.println(max);
+        pw.close();
+    }
+}
