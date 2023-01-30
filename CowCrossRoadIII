@@ -1,0 +1,40 @@
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class CowCrossRoadIII {
+    public static void main(String[] args) throws IOException {
+        Scanner r = new Scanner(new File("cowqueue.in"));
+        PrintWriter pw = new PrintWriter("cowqueue.out");
+
+        Map<Integer, Integer> cowsMAP = new HashMap<Integer, Integer>();
+        int cows = r.nextInt();
+        int[] keys = new int[cows];
+
+
+        for (int i = 0; i < cows; i++) {
+            int timeCome = r.nextInt();
+            keys[i] = timeCome;
+            int length = r.nextInt();
+            cowsMAP.put(timeCome, length);
+        }
+
+        Arrays.sort(keys);
+
+        ArrayList<Integer> sortKeys = new ArrayList<Integer>(cowsMAP.keySet());
+        Collections.sort(sortKeys);
+
+        int finish = keys[0];
+        finish += cowsMAP.get(keys[0]);
+        for (int i = 1; i < cows; i++) {
+            if (keys[i] > finish) {
+                finish = cowsMAP.get(keys[i]) + keys[i];
+            }
+            else if (finish >= keys[i]) {
+                finish += cowsMAP.get(keys[i]);
+            }
+        }
+
+        pw.println(finish);
+        pw.close();
+    }
+}
