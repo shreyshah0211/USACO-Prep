@@ -1,0 +1,56 @@
+import java.util.*;
+import java.io.*;
+
+public class SpeedingTicket {
+    public static void main(String[] args) throws IOException {
+        Scanner r = new Scanner(new File("speeding.in"));
+//        Scanner r = new Scanner(System.in);
+        PrintWriter pw = new PrintWriter("speeding.out");
+
+        int N = r.nextInt();
+        int M = r.nextInt();
+        int[] segments = new int[N];
+        int[] speeds = new int[N];
+        int Seg = 0;
+        for (int i = 0; i < N; i++) {
+            Seg = r.nextInt();
+            segments[i] = Seg;
+            speeds[i] = r.nextInt();
+        }
+        int[] cowSegments = new int[M];
+        int[] cowSpeeds = new int[M];
+        int cowSeg = 0;
+        for (int i = 0; i < M; i++) {
+            cowSeg = r.nextInt();
+            cowSegments[i] = cowSeg;
+            cowSpeeds[i] = r.nextInt();
+        }
+
+        int[] speedmap = new int[100];
+
+        //map all the speeds
+        int zone = 0;
+        for (int i = 0; i < segments.length; i++) {
+            for (int j = zone; j < (segments[i]+ zone); j++) {
+                speedmap[j] -= speeds[i];
+            }
+            zone += segments[i];
+        }
+        int zone2 = 0;
+        //map cow speeds
+        for (int i = 0; i < cowSegments.length; i++) {
+            for (int j = zone2; j < (cowSegments[i]+ zone2); j++) {
+                speedmap[j] += cowSpeeds[i];
+            }
+            zone2 += cowSegments[i];
+        }
+        int max = 0;
+        for (int i = 0; i < speedmap.length; i++) {
+            if (speedmap[i] > max) {
+                max = speedmap[i];
+            }
+        }
+        pw.println(max);
+        pw.close();
+    }
+}
