@@ -1,0 +1,59 @@
+import java.io.*;
+import java.util.*;
+public class Mixing {
+    public static void main(String[] args) throws IOException {
+        Scanner r = new Scanner(new File("mixmilk.in"));
+        PrintWriter pw = new PrintWriter("mixmilk.out");
+
+        int cap1 = r.nextInt();
+        int vol1 = r.nextInt();
+
+        int cap2 = r.nextInt();
+        int vol2 = r.nextInt();
+
+        int cap3 = r.nextInt();
+        int vol3 = r.nextInt();
+
+        for (int i = 0; i < 33; i++) {
+            if (vol1 + vol2 <= cap2) {
+                vol2 += vol1;
+                vol1 = 0;
+            }
+            else {
+                vol1 -= cap2 - vol2;
+                vol2 = cap2;
+            }
+            if (vol2 + vol3 <= cap3) {
+                vol3 += vol2;
+                vol2 = 0;
+            }
+            else {
+                vol2 -= cap3 - vol3;
+                vol3 = cap3;
+            }
+
+            if (vol3 + vol1 <= cap1) {
+                vol1 += vol3;
+                vol3 = 0;
+            }
+            else {
+                vol3 -= cap1 - vol1;
+                vol1 = cap1;
+            }
+        }
+        if (vol1 + vol2 <= cap2) {
+            vol2 += vol1;
+            vol1 = 0;
+        }
+        else {
+            vol1 -= cap2 - vol2;
+            vol2 = cap2;
+        }
+
+        pw.println(vol1);
+        pw.println(vol2);
+        pw.println(vol3);
+        pw.close();
+
+    }
+}
