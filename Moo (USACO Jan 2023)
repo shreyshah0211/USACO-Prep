@@ -1,0 +1,33 @@
+import java.util.*;
+public class MOO {
+    public static void main(String[] args) {
+        Scanner r = new Scanner(System.in);
+        int strings = r.nextInt();
+        String[] list = new String[strings];
+
+        for (int i = 0; i < strings; i++) {
+            list[i] = r.next();
+        }
+        int[] outputs = new int[strings];
+        for (int i = 0; i < list.length; i++) {
+            String tempString = list[i];
+            int tempOutputLEN = tempString.length();
+            if (tempString.contains("MOO")) {
+                outputs[i] = tempOutputLEN - 3;
+            }
+            else if (tempString.contains("OOO") || tempString.contains("MOM")) {
+                outputs[i] = tempOutputLEN - 2;
+            }
+            else if (tempString.contains("OOM")) {
+                outputs[i] = tempOutputLEN - 1;
+            }
+            else {
+                outputs[i] = -1;
+            }
+        }
+
+        for (int i = 0; i < strings; i++) {
+            System.out.println(outputs[i]);
+        }
+    }
+}
